@@ -1,0 +1,148 @@
+#navigation li {
+    display: inline;
+    margin-right: 1px ;
+}
+#navigation li a {
+    padding: 4px 20px ;
+    background: #000000 ;
+    color: #ffffff ;
+    border: 2px solid #000000 ;
+    font: 1em "Trebuchet MS",Arial,sans-serif ;
+    line-height: 1em ;
+    text-align: center ;
+    text-decoration: dotted ;
+    border-radius: 10px ;
+  }
+
+#navigation li a:hover, #navigation li a:focus, #navigation li a:active {
+    background: none;
+    color : #4b5e65;
+    border: 2px solid #4b5e65;
+    transition: ease-in-out 200ms;
+    text-align: center;
+    line-height: 1em;
+    text-decoration: underline; 
+    margin-top: 10px;
+  }
+
+#navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.menu_mobile {
+  display: none;
+} 
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .menu_mobile {
+    display: block;
+    margin-right: 10px;
+    
+  }
+  .menu ul {
+    display: none;
+  }
+  .menu_mobile {
+    background-color: transparent;
+    border: none;
+    color: #000000;
+  }
+  .menu ul {
+    display: block;
+  }
+}
+
+header {
+  background-color: #ffffff;
+}
+
+body {
+    background-color: #ffffff;
+}
+h1  {
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+    color: #010101;
+    font-size: xx-large;
+    text-decoration: overline underline #4b5e65 ;
+    }
+h2 {
+  font-family: 'PT Sans', sans-serif;
+  font-size : 26px;
+  color: #ffffff;
+  background-color: #000000;
+}
+p {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  text-align: justify;
+  
+  }
+hr  {
+    border: solid 2px;
+    border-color: #4b5e65;
+
+    }
+div {
+  background-color: #ffffff;
+  font-family: 'PT Sans',sans-serif;
+  font-size: 18px;
+  text-align: justify;
+}
+
+table {
+  font-family: 'PT Sans',sans-serif;
+  text-align: center;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+td {
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 4px;
+}
+td:hover {
+  color: #ffffff;
+  background-color: #000000;
+  transform: scale(1.1);
+  transition: ease-in-out 200ms;
+  margin-left: auto;
+}
+
+.rainbow {
+  background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red, violet);
+  text-align: center;
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 8s ease infinite;
+    animation-duration: 8s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: rainbow;
+}
+@keyframes rainbow{
+  0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 25%;
+}
+100% {
+    background-position: 0% 50%;
+}}
+ul {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  text-align: justify;
+}

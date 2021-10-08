@@ -1,0 +1,91 @@
+#navigation li {
+    display: inline;
+    margin-right: 1px ;
+}
+
+#navigation li a {
+    padding: 4px 20px ;
+    background: #000000 ;
+    color: #ffffff ;
+    border: 2px solid #000000 ;
+    font: 1em "Trebuchet MS",Arial,sans-serif ;
+    line-height: 1em ;
+    text-align: center ;
+    text-decoration: dotted ;
+    border-radius: 10px ;
+  }
+
+#navigation li a:hover, #navigation li a:focus, #navigation li a:active {
+    background: none;
+    color : #4b5e65;
+    border: 2px solid #4b5e65;
+    transition: ease-in-out 200ms;
+    text-align: center;
+    line-height: 1em;
+    text-decoration: underline; 
+    margin-top: 10px;
+  }
+
+#navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+header {
+  background-color: #ffffff;
+}
+
+body {
+    background-color: #ffffff;
+}
+h1  {
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+    color: #010101;
+    font-size: xx-large;
+    text-decoration: overline underline #4b5e65 ;
+    }
+h2 {
+  font-family: 'PT Sans', sans-serif;
+  font-size : 26px;
+  color: #ffffff;
+  background-color: #000000;
+}
+p {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  text-align: justify;
+  
+  }
+hr  {
+    border: solid 2px;
+    border-color: #4b5e65;
+
+    }
+div {
+  background-color: #ffffff;
+}
+
+table {
+  font-family: 'PT Sans',sans-serif;
+  text-align: center;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+td {
+  border: 2px solid #000000;
+  padding: 4px;
+  color: transparent;
+  background-color: #ffffff;
+}
+td:hover {
+  color: #ffffff;
+  transition: ease-in-out 200ms;
+  margin-left: auto;
+}
+li {
+  font-family: 'PT Sans',sans-serif;
+  font-size: large;
+}
