@@ -14,31 +14,107 @@
     <p>Vous venez d'assister à notre exposé sur les monarchies parlementaires, centrée essentiellement sur les Pays-Bas. Voici venue, l'heure d'un petit questionnaire</p>
     <br><br><br><br>
 
+    <div id="radio-a" class="container">
+        <p class="question">Depuis quelle année les Pays-Bas ont-il une monarchie ?</p>
+        <div id="container-input-radio-1" class="container-input">
+      
+            <input id="radio-1" class="radios" type="radio" name="rep_0" checked>
+            <label id="label-radio-1" class="label-radio" for="radio-1">1815</label>
+        
+            <input id="radio-2" class="radios" type="radio" name="rep_0">
+            <label id="label-radio-2" class="label-radio" for="radio-2">1825</label>
+        
+            <input id="radio-3" class="radios" type="radio" name="rep_0">
+            <label id="label-radio-3" class="label-radio" for="radio-3">1915</label>
+            <div id="btn-radio-1"></div>
+        </div>
+    </div>
+
+
+    <div id="radio-b" class="container">
+        <p class="question">Qui est le monarque actuel ?</p>
+        <div id="container-input-radio-2" class="container-input">
+      
+            <input id="radio-4" class="radios" type="radio" name="rep_1" checked>
+            <label id="label-radio-4" class="label-radio" for="radio-4">Willem-Alexander</label>
+        
+            <input id="radio-5" class="radios" type="radio" name="rep_1">
+            <label id="label-radio-5" class="label-radio" for="radio-5">Wilhelmine</label>
+        
+            <input id="radio-6" class="radios" type="radio" name="rep_1">
+            <label id="label-radio-6" class="label-radio" for="radio-6">Christophe Willem</label>
+            <div id="btn-radio-2"></div>
+        </div>
+    </div>
+
+
+    <div id="radio-c" class="container">
+        <p class="question">Qui n'a jamais été un monarque des Pays-Bas ?</p>
+        <div id="container-input-radio-3" class="container-input">
+      
+            <input id="radio-7" class="radios" type="radio" name="rep_2" checked>
+            <label id="label-radio-7" class="label-radio" for="radio-7">Christophe Willem</label>
+        
+            <input id="radio-8" class="radios" type="radio" name="rep_2">
+            <label id="label-radio-8" class="label-radio" for="radio-8">Mark Ruttedu</label>
+        
+            <input id="radio-9" class="radios" type="radio" name="rep_2">
+            <label id="label-radio-9" class="label-radio" for="radio-9">Wilhelmine</label>
+            <div id="btn-radio-3"></div>
+        </div>
+    </div>
+
+
+    <div id="radio-d" class="container">
+        <p class="question"></p>
+        <div id="container-input-radio-4" class="container-input">
+      
+            <input id="radio-10" class="radios" type="radio" name="rep_3" checked>
+            <label id="label-radio-10" class="label-radio" for="radio-10"></label>
+        
+            <input id="radio-11" class="radios" type="radio" name="rep_3">
+            <label id="label-radio-11" class="label-radio" for="radio-11"></label>
+        
+            <input id="radio-12" class="radios" type="radio" name="rep_3">
+            <label id="label-radio-12" class="label-radio" for="radio-12"></label>
+            <div id="btn-radio-4"></div>
+        </div>
+    </div>
+
+
+
+
+
     <p id="test">
-        <span class="question">Depuis quelle année les Pays-Bas ont-il une monarchie ?</span> <br>
-        <br><input type="radio" id="bonne_reponse_1" name="rep_0" value="1">1815 
+        <span class="question"></span> <br>
+        <br><input type="radio" name="rep_0" id="bonne_reponse_1" value="1">1815 
         <br><input type="radio" name="rep_0" value="0">1915 
         <br><input type="radio" name="rep_0" value="0">2015 
         <br><input type="radio" name="rep_0" value="0">1825 
     </p>
     <div class="screen-jump"></div>
     <p>
-        <span class="question">Qui est le monarque actuel ?</span> <br>
+        <span class="question"></span> <br>
         <br><input type="radio" name="rep_1" value="0">Wilhelmine 
         <br><input type="radio" name="rep_1" value="0">Christophe Willem 
-        <br><input type="radio" id="bonne_reponse_2" name="rep_1" value="1">Willem-Alexander 
+        <br><input type="radio" name="rep_1" id="bonne_reponse_2" value="1">Willem-Alexander 
         <br><input type="radio" name="rep_1" value="0">Mark Ruttedu 
     </p>
         <div class="screen-jump"></div>
     <p>
-        <span class="question">Qui n'a jamais été un monarque des Pays-Bas ?</span> <br>
+        <span class="question"></span> <br>
         <br><input type="radio" name="rep_2" value="0">Willem-Alexander 
         <br><input type="radio" name="rep_2" value="0">Wilhelmine 
-        <br><input type="radio" id="bonne_reponse_3" name="rep_2" value="1">Mark Ruttedu 
+        <br><input type="radio" name="rep_2" id="bonne_reponse_3" value="1">Mark Ruttedu 
         <br><input type="radio" name="rep_2" value="0">Christophe Willem 
     </p>
     <br><br><br><br>
     <button role="valider" ide="valider" onclick="score()">Valider les réponses</button>
     <p id="score">Votre score est de <b><span id="resultat"></span></b>.</p>
+
+
+
+
+
 </body>
 </html>
