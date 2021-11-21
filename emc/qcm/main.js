@@ -16,5 +16,5 @@ function score () {
     if (bonne_reponse_4.checked) {
         total++;
     };
-    document.getElementById('resultat').innerHTML = total + "/4";
+    document.getElementById('resultat').innerHTML = "Votre score est de " + total + "/4.";
 };
