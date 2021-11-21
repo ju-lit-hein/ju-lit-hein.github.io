@@ -1,7 +1,8 @@
 function score () {
-    const bonne_reponse_1 = document.querySelector('input[id="bonne_reponse_1"]');
-    const bonne_reponse_2 = document.querySelector('input[id="bonne_reponse_2"]');
-    const bonne_reponse_3 = document.querySelector('input[id="bonne_reponse_3"]');
+    const bonne_reponse_1 = document.querySelector('input[id="radio-1"]');
+    const bonne_reponse_2 = document.querySelector('input[id="radio-4"]');
+    const bonne_reponse_3 = document.querySelector('input[id="radio-8"]');
+    const bonne_reponse_4 = document.querySelector('input[id="radio-12"]');
     let total = 0;
     if (bonne_reponse_1.checked) {
         total++;
@@ -12,7 +13,8 @@ function score () {
     if (bonne_reponse_3.checked) {
         total++;
     };
-    document.getElementById('resultat').innerHTML = total;
-    var element = document.getElementsById('score');
-    element.classList.remove('affichage');
+    if (bonne_reponse_4.checked) {
+        total++;
+    };
+    document.getElementById('resultat').innerHTML = total + "/4";
 };
