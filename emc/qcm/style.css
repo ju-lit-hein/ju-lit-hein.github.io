@@ -263,7 +263,7 @@ body {
     content: "";
     position: absolute;
 
-    width: 160px;
+    width: 100px;
     height: 40px;
 
     border: 2px solid #26caf8;
@@ -284,12 +284,12 @@ body {
 }
 
 #radio-8:checked ~ #btn-radio-3 {
-    left: 190px;
-    width: 120px;
+    left: 140px;
+    width: 130px;
 }
 
 #radio-9:checked ~ #btn-radio-3 {
-    left: 315px;
+    left: 305px;
     width: 120px;
 }
 /*###################################              QUESTION 4*/
