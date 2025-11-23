@@ -35,9 +35,9 @@ const Hero: React.FC = () => {
             <div ref={terminalRef} className="font-mono inline"></div>
           </div>
           <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-2xl">
-            I'm a third-year IT student at Epitech specializing in graphical programming
-            and software development. With expertise in C, C++, and Rust, I build
-            robust applications and explore the intersection of low-level graphical programming with Vulkan.
+            I'm a fourth-year student at Epitech, specializing in software development.
+            I have experience working with C++, Python, Rust, and C for building system-level and application software.
+            I also develop modern web applications using frameworks and tools like React, Next.js, Vite, and Tailwind CSS, focusing on creating efficient and user-friendly interfaces.
           </p>
           <div className="flex flex-wrap gap-4">
             <a

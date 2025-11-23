@@ -4,9 +4,10 @@ import { useTheme } from '../context/ThemeContext';
 
 interface HeaderProps {
   toggleTerminal: () => void;
+  isLinksPage?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ toggleTerminal }) => {
+const Header: React.FC<HeaderProps> = ({ toggleTerminal, isLinksPage }) => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,13 +25,23 @@ const Header: React.FC<HeaderProps> = ({ toggleTerminal }) => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const navItems = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  let navItems;
+
+  if (isLinksPage) {
+    navItems = [
+      { name: 'Home', href: '/' },
+      { name: 'Links', href: '/links' },
+    ];
+  } else {
+    navItems = [
+      { name: 'Home', href: '#hero' },
+      { name: 'About', href: '#about' },
+      { name: 'Skills', href: '#skills' },
+      { name: 'Projects', href: '#projects' },
+      { name: 'Contact', href: '#contact' },
+      { name: 'Links', href: '/links' },
+    ];
+  }
 
   return (
     <header
@@ -58,6 +69,8 @@ const Header: React.FC<HeaderProps> = ({ toggleTerminal }) => {
             </a>
           ))}
 
+          {
+            isLinksPage ? null : (
           <button
             onClick={toggleTerminal}
             className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
@@ -65,6 +78,8 @@ const Header: React.FC<HeaderProps> = ({ toggleTerminal }) => {
           >
             <TerminalIcon className="w-5 h-5" />
           </button>
+            )
+          }
 
           <button
             onClick={toggleTheme}
