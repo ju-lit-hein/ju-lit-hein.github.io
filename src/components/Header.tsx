@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTerminal, isLinksPage }) => {
   if (isLinksPage) {
     navItems = [
       { name: 'Home', href: '/' },
-      { name: 'Links', href: '/links' },
+      { name: 'Links', href: '/#/links' },
     ];
   } else {
     navItems = [
@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTerminal, isLinksPage }) => {
       { name: 'Skills', href: '#skills' },
       { name: 'Projects', href: '#projects' },
       { name: 'Contact', href: '#contact' },
-      { name: 'Links', href: '/links' },
+      { name: 'Links', href: '/#/links' },
     ];
   }
 
