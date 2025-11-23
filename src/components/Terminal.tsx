@@ -28,6 +28,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
 Available commands:
   help                Show this help message
   about               About me
+  goto [section]      Navigate to a section (about, contact, projects, skills, main (home/top))
   skills              List my technical skills
   projects            View my projects
   clear               Clear the terminal
@@ -36,14 +37,15 @@ Available commands:
     about: () => `
 Julien FERDINAND
 -----------------
-Third-year IT student at Epitech
+Fourth-year IT student at Epitech, currently at Inha University, South Korea
 Passionate about systems programming and software development
-Proficient in C, C++, Rust, and comfortable in Linux/macOS environments
+Proficient in C, C++, React/Next.js, and comfortable in Linux/macOS environments
 `,
     skills: () => `
 Technical Skills:
 -----------------
-Languages: C, C++, Rust, Bash/Shell, Python
+Languages: C, C++, Bash/Shell, Python, Rust, JavaScript/TypeScript
+Frameworks: React, Next.js, Vite, Tailwind CSS
 Systems: Linux, macOS, Memory Management, Concurrency
 Tools: Git & GitHub, Bash Scripting, Debugging Tools, VS Code, Make/CMake
 Other: Algorithms, Data Structures, Software Architecture, Unit Testing
@@ -69,33 +71,23 @@ Type "goto projects" to view detailed project information.
     goto: (args) => {
       if (args.length === 0) return 'Error: Please specify a destination. Try "goto projects"';
 
+      const destinations: Record<string, string> = {
+        main: 'main',
+        home: 'main',
+        top: 'main',
+        about: 'about',
+        contact: 'contact',
+        projects: 'projects',
+        skills: 'skills'
+      };
       const destination = args[0].toLowerCase();
-      if (destination === 'projects') {
+      if (Object.keys(destinations).includes(destination)) {
         setTimeout(() => {
-          document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById(destinations[destination])?.scrollIntoView({ behavior: 'smooth' });
           onClose();
         }, 500);
-        return 'Navigating to projects section...';
-      } else if (destination === 'about') {
-        setTimeout(() => {
-          document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-          onClose();
-        }, 500);
-        return 'Navigating to about section...';
-      } else if (destination === 'skills') {
-        setTimeout(() => {
-          document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
-          onClose();
-        }, 500);
-        return 'Navigating to skills section...';
-      } else if (destination === 'contact') {
-        setTimeout(() => {
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-          onClose();
-        }, 500);
-        return 'Navigating to contact section...';
+        return `Navigating to ${destination} section...`;
       }
-
       return `Error: Unknown destination "${args[0]}"`;
     }
   };
