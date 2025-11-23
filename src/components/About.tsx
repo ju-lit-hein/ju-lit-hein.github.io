@@ -11,32 +11,31 @@ const About: React.FC = () => {
             </h2>
             <div className="space-y-4 text-slate-700 dark:text-slate-300">
               <p>
-                Hello! I'm Julien, a passionate software developer currently in my third year at Epitech La Réunion,
-                where I'm honing my skills in systems programming and software architecture.
+                Hi! I'm Julien, a passionate software developer currently in my fourth year at Epitech,
+                 where I'm honing my skills in systems programming, software architecture, and full-stack web development.
               </p>
               <p>
-                My journey in programming began with C, which gave me a strong foundation in memory management
-                and algorithmic thinking. Since then, I've expanded my expertise to include C++ and Rust,
-                embracing modern programming paradigms while maintaining a deep appreciation for efficient,
-                performant code.
+                My programming foundation started with C, which gave me strong expertise in memory management
+                 and algorithmic thinking. Since then, I've expanded to include C++, Python, and Rust, embracing
+                 modern paradigms while maintaining a deep appreciation for efficient, performant code.
               </p>
               <p>
-                I'm particularly fascinated by graphical programming, which has led me to learn OpenGL for
-                a project in my first year at Epitech. After working hard to display a simple cube on the screen led me to
-                develop my own 3d game engine (not alone of course) in C++ and OpenGL, which was a challenging yet rewarding experience.
-                In second year, we even developed a VR project - a native android application - in C++ using OpenGL ES that runs
-                on Meta Quest.
+                I'm particularly fascinated by graphics programming—my early projects with OpenGL led me to
+                 develop a 3D game engine in C++ with my friends, and in my second year, we built a native
+                 Android VR application using OpenGL ES for Meta Quest.
               </p>
               <p>
-                From now on, I'm doing an end-of-study project in C++ and Vulkan, starting a 3D software engine from scratch. We're first
-                doing two libraries, one for the 3D engine and one for the GUI, both of which will be open source.
+                More recently, I've been working on a Vulkan-based 3D software engine from scratch,
+                 developing open-source libraries for both the 3D rendering engine and GUI.
               </p>
               <p>
-                Beyond coding, I'm enthusiastic about development tools and workflows. I'm experienced with Git,
-                GitHub, and various build systems that help create maintainable, collaborative projects.
+                Beyond systems programming, I'm passionate about modern web development.
+                I build web applications using React, Next.js, Vite, and Tailwind CSS, creating
+                 efficient and user-friendly interfaces. I'm also experienced with development tools
+                  including Git, GitHub, CMake, and various build systems for collaborative, maintainable projects.
               </p>
                 <p>
-                When I'm not coding, you might find me exploring roads on my motorcycle, I&nbsp;drive&nbsp;an&nbsp;MT09&nbsp;by&nbsp;the&nbsp;way&nbsp;✌️.
+                When I'm not coding, you might find me exploring roads on my motorcycle, I&nbsp;drive&nbsp;an&nbsp;MT09&nbsp;by&nbsp;the&nbsp;way✌️.
                 </p>
             </div>
           </div>
@@ -46,8 +45,20 @@ const About: React.FC = () => {
               <h3 className="text-xl font-bold mb-4 text-cyan-500">Education</h3>
               <div className="mb-8">
                 <div className="flex justify-between mb-1">
-                  <h4 className="font-bold">Epitech</h4>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">2022 - Present</span>
+                  <h4 className="font-bold">Inha University | 인하대학교 🇰🇷</h4>
+                  <span className="text-sm text-slate-500 dark:text-slate-400">2025 - 2026</span>
+                </div>
+                <p className="text-sm mb-2">Exchange year in Computer Science</p>
+                <p className="text-slate-600 dark:text-slate-400 text-sm">
+                  During my exchange year at Inha University in South Korea, I strengthened my software development and
+                   algorithm skills through intensive, project-based and theoretical courses, gaining practical
+                    experience in a dynamic academic environment.
+                </p>
+              </div>
+              <div className="mb-8">
+                <div className="flex justify-between mb-1">
+                  <h4 className="font-bold">Epitech Reunion</h4>
+                  <span className="text-sm text-slate-500 dark:text-slate-400">2022 - 2027</span>
                 </div>
                 <p className="text-sm mb-2">Master in Computer Science</p>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">

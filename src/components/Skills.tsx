@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Terminal, Cpu, Code, Server, Github, GitBranch } from 'lucide-react';
-import { C, CPlusPlus, GitHubDark, GitHubLight, Python, RustDark, RustLight, VisualStudioCode } from 'developer-icons';
+import { Terminal, Cpu, Code, Server, AppWindow } from 'lucide-react';
+import { C, CPlusPlus, GitHubDark, GitHubLight, NextJs, Python, RustDark, RustLight, TailwindCSS, VisualStudioCode, ViteJS } from 'developer-icons';
 import { ThemeContext } from '../context/ThemeContext';
+import { React as ReactLogo } from 'developer-icons';
 
 interface SkillCategory {
   id: string;
@@ -32,6 +33,17 @@ const Skills: React.FC = () => {
       ],
     },
     {
+      id: 'web',
+      name: 'Web Development',
+      icon: <AppWindow className="w-5 h-5 md:w-6 md:h-6" />,
+      skills: [
+        { name: 'React', logo: <ReactLogo className="w-14 h-14" /> },
+        { name: 'Next', logo: <NextJs className="w-14 h-14" /> },
+        { name: 'Vite', logo: <ViteJS className="w-14 h-14" /> },
+        { name: 'Tailwind', logo: <TailwindCSS className="w-14 h-14" /> },
+      ],
+    },
+    {
       id: 'graphical',
       name: 'Graphical Programming',
       icon: <Cpu className="w-5 h-5 md:w-6 md:h-6" />,
@@ -39,7 +51,6 @@ const Skills: React.FC = () => {
         { name: 'OpenGL', logo: <p>OpenGL</p> },
         { name: 'Vulkan', logo: <p>Vulkan</p> },
         { name: 'SDL', logo: <p>SDL</p> },
-        { name: 'Cuda', logo: <p>CUDA</p> },
         { name: 'OpenGL ES', logo: <p>OpenGL ES</p> },
         { name: 'OpenXR', logo: <p>OpenXR</p> },
       ],
