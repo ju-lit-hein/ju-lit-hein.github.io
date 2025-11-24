@@ -79,7 +79,7 @@ const Contact: React.FC = () => {
                 Download my resume for a detailed overview of my experience and skills.
               </p>
               <a
-                href="/src/assets/resume.pdf"
+                href="/assets/resume.pdf"
                 className="inline-flex items-center px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-md transition-colors duration-300 text-sm"
               >
                 Download resume
