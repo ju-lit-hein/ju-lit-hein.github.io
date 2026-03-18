@@ -35,7 +35,7 @@ const About: React.FC = () => {
                   including Git, GitHub, CMake, and various build systems for collaborative, maintainable projects.
               </p>
                 <p>
-                When I'm not coding, you might find me exploring roads on my motorcycle, I&nbsp;drive&nbsp;an&nbsp;MT09&nbsp;by&nbsp;the&nbsp;way✌️.
+                When I'm not coding, you might find me exploring roads on my motorcycle. I&nbsp;drive&nbsp;an&nbsp;MT09&nbsp;by&nbsp;the&nbsp;way✌️.
                 </p>
             </div>
           </div>
@@ -51,7 +51,7 @@ const About: React.FC = () => {
                 <p className="text-sm mb-2">Exchange year in Computer Science</p>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">
                   During my exchange year at Inha University in South Korea, I strengthened my software development and
-                   algorithm skills through intensive, project-based and theoretical courses, gaining practical
+                   algorithm skills through intensive, project-based, and theoretical courses, gaining practical
                     experience in a dynamic academic environment.
                 </p>
               </div>
@@ -60,10 +60,11 @@ const About: React.FC = () => {
                   <h4 className="font-bold">Epitech Reunion</h4>
                   <span className="text-sm text-slate-500 dark:text-slate-400">2022 - 2027</span>
                 </div>
-                <p className="text-sm mb-2">Master in Computer Science</p>
+                <p className="text-sm mb-2">Master's Degree in Software Engineering</p>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                  Rigorous training in software development, algorithms, and project management through
-                  practical, project-based learning.
+                  Master's-level Degree in Information Technology (Bac+5) accredited by the French Ministry of Higher Education and Research
+                  <br />
+                  Master's Degree in Software Engineering (Bac+5, RNCP Level 7) registered in the French National Directory of Professional Certifications (<a href="https://www.francecompetences.fr/recherche/rncp/37985/" className="text-cyan-500 hover:underline" target="_blank" rel="noopener noreferrer">RNCP37985</a>)
                 </p>
               </div>
               <h3 className="text-xl font-bold mb-4 text-cyan-500">Interests</h3>

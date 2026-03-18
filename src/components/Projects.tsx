@@ -33,7 +33,7 @@ const Projects: React.FC = () => {
       id: 'gameengine2',
       title: 'Game Engine',
       description: 'A complete game engine built in C++ with a focus on integrated features. (see <a class="text-cyan-500" target="_blank" href="https://github.com/etib-corp/r-type">the game</a> we made with it)',
-      tags: ['C++', 'Game Development', 'ECS', 'SFML', 'OpenAL', 'Scripting'],
+      tags: ['C++', 'Game Development', 'ECS', 'SFML', 'Scripting'],
       github: 'https://github.com/etib-corp/lion-engine',
       features: [
         'Entity Component System (ECS) architecture',
@@ -46,9 +46,9 @@ const Projects: React.FC = () => {
     {
       id: 'raytracer',
       title: 'Raytracer',
-      description: 'A simple raytracer written in C++.',
+      description: 'A simple raytracer written in C++ with both live rendering capabilities and png format export.',
       tags: ['C++', 'Raytracing', 'SFML', 'Math'],
-      github: 'https:/github.com/etib-corp/raytracer',
+      github: 'https://github.com/etib-corp/raytracer',
       features: [
         'Ray-object intersection algorithms',
         'Basic shading models (diffuse, specular)',
@@ -59,16 +59,16 @@ const Projects: React.FC = () => {
       ]
     },
     {
-      id: 'maverik',
-      title: 'Maverik',
-      description: 'This project isn\'t done yet, but it\'s a complete library for creating 3D software in C++ and Vulkan. This is my end-of-study project, and I\'m working on it with three friends of mine. (features below may be ready yet)',
-      tags: ['C++', 'Vulkan', 'Software Development', '3D'],
-      github: 'https://github.com/etib-corp/maverik',
+      id: 'guillaume',
+      title: 'guillaume',
+      description: 'A C++ UI framework designed for modern desktop and extended reality (XR) applications. This project is still in development and is part of my end-of-study project.',
+      tags: ['C++', 'Software Development', '3D'],
+      github: 'https://github.com/etib-corp/guillaume',
       features: [
-        '3D model loading and rendering',
-        'Shader management and compilation',
-        'Vulkan API encapsulation',
-        'Multi-threaded rendering for performance'
+        '3D Integration',
+        'Cross-Platform Support',
+        'Customizable Themes',
+        'Rich UI Components'
       ]
     },
   ];
@@ -93,7 +93,7 @@ const Projects: React.FC = () => {
               }`}
             >
               <div
-                className="p-6 cursor-pointer"
+                className="p-6 cursor-pointer h-full"
                 onClick={() => handleProjectClick(project.id)}
               >
                 <div className="flex justify-between items-start mb-3">
