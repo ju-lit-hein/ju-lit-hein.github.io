@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, Code } from 'lucide-react';
+import { Code, TerminalIcon } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -12,32 +12,17 @@ const Footer: React.FC = () => {
             <p className="text-sm">© {currentYear} Julien FERDINAND. All rights reserved.</p>
           </div>
 
-          <div className="flex space-x-4">
-            <a
-              href="https://github.com/ju-lit-hein"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/julienferdinand"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:julien.ferdinand@epitech.eu"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
+          <div className="flex space-x-2 text-slate-300 text-sm">
+            <p>
+              Hey! You thought it was already the end?
+            </p>
+            <p>
+              Did you click on the
+            </p>
+            <TerminalIcon className="w-5 h-5" />
+            <p>
+              icon on top?
+            </p>
           </div>
         </div>
 
