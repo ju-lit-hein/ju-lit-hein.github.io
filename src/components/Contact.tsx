@@ -1,94 +1,41 @@
 import React from 'react';
-import { Mail, Github, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Github, Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  openResume: () => void;
+}
+
+const Contact: React.FC<ContactProps> = ({ openResume }) => {
+  const { t } = useTranslation();
+  const links = [
+    { label: 'julien.ferdinand@epitech.eu', href: 'mailto:julien.ferdinand@epitech.eu', icon: Mail },
+    { label: 'github.com/ju-lit-hein', href: 'https://github.com/ju-lit-hein', icon: Github },
+    { label: 'linkedin.com/in/julienferdinand', href: 'https://linkedin.com/in/julienferdinand', icon: Linkedin },
+    { label: 'instagram.com/julithein', href: 'https://instagram.com/julithein', icon: Instagram },
+  ];
+
   return (
-    <section id="contact" className="py-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl font-bold mb-12 flex items-center">
-          <span className="text-cyan-500 font-mono mr-2">04.</span> Contact
-        </h2>
+    <section id="contact" className="py-24">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
+        <div className="section-rule pt-5 mb-12">
+          <p className="font-mono text-xs uppercase tracking-wider text-[var(--signal-dark)] mb-5">{t('contact.label')}</p>
+          <h2 className="display-title whitespace-pre-line text-5xl md:text-8xl font-bold">{t('contact.title')}</h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.8fr] gap-12">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Get In Touch</h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-6">
-              I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
-              I'll do my best to get back to you!
-            </p>
+            <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)] mb-8">{t('contact.description')}</p>
 
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center">
-                <Mail className="w-5 h-5 text-cyan-500 mr-3" />
-                <a
-                  href="mailto:julien.ferdinand@epitech.eu"
-                  className="text-slate-800 dark:text-slate-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                >
-                  julien.ferdinand@epitech.eu
-                </a>
-              </div>
-              <div className="flex items-center">
-                <Github className="w-5 h-5 text-cyan-500 mr-3" />
-                <a
-                  href="https://github.com/ju-lit-hein"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-800 dark:text-slate-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                >
-                  github.com/ju-lit-hein (personal)
-                </a>
-              </div>
-              <div className="flex items-center">
-                <Linkedin className="w-5 h-5 text-cyan-500 mr-3" />
-                <a
-                  href="https://linkedin.com/in/julienferdinand"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-800 dark:text-slate-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                >
-                  linkedin.com/in/julienferdinand
-                </a>
-              </div>
-              <div className="flex items-center">
-                <Instagram className="w-5 h-5 text-cyan-500 mr-3" />
-                <a
-                  href="https://instagram.com/julithein"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-800 dark:text-slate-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                >
-                  instagram.com/julithein
-                </a>
-              </div>
-              <div className="flex items-center">
-                <Github className="w-5 h-5 text-cyan-500 mr-3" />
-                <a
-                  href="https://github.com/etib-corp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-800 dark:text-slate-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                >
-                  github.com/etib-corp (friends and I)
-                </a>
-              </div>
-            </div>
+            <div className="space-y-4 mb-9">{links.map(({ label, href, icon: Icon }) => <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined} className="flex items-center text-[var(--ink)] hover:text-[var(--signal)] transition-colors"><Icon className="w-5 h-5 text-[var(--signal)] mr-3" />{label}</a>)}</div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-slate-200 dark:border-slate-700">
-              <h4 className="font-bold text-lg mb-2">Resume</h4>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">
-                Download my resume for a detailed overview of my experience and skills.
-              </p>
-              <a
-                href="/assets/resume.pdf"
-                className="inline-flex items-center px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-md transition-colors duration-300 text-sm"
-              >
-                Download resume
-              </a>
+            <div className="border-t border-[var(--line)] pt-5 flex flex-wrap items-center justify-between gap-4">
+              <div><h4 className="font-semibold mb-1">{t('contact.shortVersion')}</h4><p className="text-sm text-[var(--muted)]">{t('contact.shortDescription')}</p></div>
+              <button type="button" onClick={openResume} className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--ink)] text-[var(--paper)] text-sm font-semibold hover:bg-[var(--signal)] transition-colors">{t('actions.downloadResume')} <ArrowUpRight className="w-4 h-4" /></button>
             </div>
           </div>
 
-          <div>
-          </div>
+          <div className="md:border-l md:border-[var(--line)] md:pl-10"><p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-5">{t('contact.noteLabel')}</p><p className="text-2xl md:text-3xl font-semibold leading-tight">{t('contact.note')}</p></div>
         </div>
       </div>
     </section>

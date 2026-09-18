@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface TerminalProps {
   onClose: () => void;
@@ -11,9 +12,10 @@ interface CommandHistory {
 }
 
 const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
+  const { t } = useTranslation();
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<CommandHistory[]>([
-    { command: '', output: 'Welcome to Julien\'s terminal! Type "help" to see available commands.' }
+    { command: '', output: t('terminal.welcome') }
   ]);
   const [position, setPosition] = useState({ x: '50%', y: '50%' });
   const [isDragging, setIsDragging] = useState(false);
@@ -24,42 +26,10 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
 
   // Available commands
   const commands: Record<string, (args: string[]) => string> = {
-    help: () => `
-Available commands:
-  help                Show this help message
-  about               About me
-  goto [section]      Navigate to a section (about, contact, projects, skills, main (home/top))
-  skills              List my technical skills
-  projects            View my projects
-  clear               Clear the terminal
-  exit                Close this terminal
-`,
-    about: () => `
-Julien FERDINAND
------------------
-Fourth-year IT student at Epitech, currently at Inha University, South Korea
-Passionate about systems programming and software development
-Proficient in C, C++, React/Next.js, and comfortable in Linux/macOS environments
-`,
-    skills: () => `
-Technical Skills:
------------------
-Languages: C, C++, Bash/Shell, Python, Rust, JavaScript/TypeScript
-Frameworks: React, Next.js, Vite, Tailwind CSS
-Systems: Linux, macOS, Memory Management, Concurrency
-Tools: Git & GitHub, Bash Scripting, Debugging Tools, VS Code, Make/CMake
-Other: Algorithms, Data Structures, Software Architecture, Unit Testing
-`,
-    projects: () => `
-Projects:
------------------
-1. Custom Shell Implementation - A fully functional Unix shell written in C
-2. Mini Compiler - A compiler for a simplified programming language
-3. Game Engine Components - Modular game engine components in Rust
-4. Linux System Monitor - Terminal-based system monitoring tool
-
-Type "goto projects" to view detailed project information.
-`,
+    help: () => t('terminal.help'),
+    about: () => t('terminal.about'),
+    skills: () => t('terminal.skills'),
+    projects: () => t('terminal.projects'),
     clear: () => {
       setHistory([]);
       return '';
@@ -69,7 +39,7 @@ Type "goto projects" to view detailed project information.
       return '';
     },
     goto: (args) => {
-      if (args.length === 0) return 'Error: Please specify a destination. Try "goto projects"';
+      if (args.length === 0) return t('terminal.missingDestination');
 
       const destinations: Record<string, string> = {
         main: 'main',
@@ -86,9 +56,9 @@ Type "goto projects" to view detailed project information.
           document.getElementById(destinations[destination])?.scrollIntoView({ behavior: 'smooth' });
           onClose();
         }, 500);
-        return `Navigating to ${destination} section...`;
+        return t('terminal.navigating', { section: destination });
       }
-      return `Error: Unknown destination "${args[0]}"`;
+      return t('terminal.unknownDestination', { destination: args[0] });
     }
   };
 
@@ -103,7 +73,7 @@ Type "goto projects" to view detailed project information.
     if (commandName in commands) {
       output = commands[commandName](args);
     } else {
-      output = `Command not found: ${commandName}. Type "help" for available commands.`;
+      output = t('terminal.notFound', { command: commandName });
     }
 
     setHistory(prev => [...prev, { command: trimmedCmd, output }]);
@@ -188,11 +158,12 @@ Type "goto projects" to view detailed project information.
               <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-            <span className="text-sm font-medium">Terminal</span>
+            <span className="text-sm font-medium">{t('terminal.title')}</span>
           </div>
           <button
             className="text-slate-400 hover:text-slate-100 transition-colors"
             onClick={onClose}
+            aria-label={t('actions.closeTerminal')}
           >
             <X className="w-4 h-4" />
           </button>
@@ -225,6 +196,7 @@ Type "goto projects" to view detailed project information.
             onKeyDown={handleKeyDown}
             className="flex-1 bg-transparent outline-none text-white font-mono"
             autoFocus
+            aria-label={t('terminal.inputLabel')}
           />
         </div>
       </div>

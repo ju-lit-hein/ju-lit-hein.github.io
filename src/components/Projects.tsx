@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Project {
   id: string;
@@ -13,96 +14,55 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
+  const { t } = useTranslation();
   const [activeProject, setActiveProject] = useState<string | null>(null);
 
-  const projects: Project[] = [
-    {
-      id: 'gameengine1',
-      title: 'Low-level Game Engine',
-      description: 'A simple (but complete) game engine built in C++ with OpenGL and OpenAL, focusing on modularity and ease-of-use.',
-      tags: ['C++', 'Game Development', 'OpenGL', 'OpenAL', 'ImGui'],
-      github: 'https://github.com/etib-corp/etib-game-engine',
-      features: [
-        '3D model loading and rendering',
-        'Full encapsulation of OpenGL and OpenAL API',
-        'Shader management and compilation',
-        'GUI engine integration with ImGui encapsulation'
-      ]
-    },
-    {
-      id: 'gameengine2',
-      title: 'Game Engine',
-      description: 'A complete game engine built in C++ with a focus on integrated features. (see <a class="text-cyan-500" target="_blank" href="https://github.com/etib-corp/r-type">the game</a> we made with it)',
-      tags: ['C++', 'Game Development', 'ECS', 'SFML', 'Scripting'],
-      github: 'https://github.com/etib-corp/lion-engine',
-      features: [
-        'Entity Component System (ECS) architecture',
-        'Integrating Sound and Math engines',
-        'Memory-efficient data structures',
-        'Event system with observer pattern',
-        'Log system for debugging',
-      ]
-    },
-    {
-      id: 'raytracer',
-      title: 'Raytracer',
-      description: 'A simple raytracer written in C++ with both live rendering capabilities and png format export.',
-      tags: ['C++', 'Raytracing', 'SFML', 'Math'],
-      github: 'https://github.com/etib-corp/raytracer',
-      features: [
-        'Ray-object intersection algorithms',
-        'Basic shading models (diffuse, specular)',
-        'Camera and scene management using config files',
-        'Multi-threaded rendering for performance',
-        'Camera movement and scene manipulation at runtime',
-        'Image output in PNG'
-      ]
-    },
-    {
-      id: 'guillaume',
-      title: 'guillaume',
-      description: 'A C++ UI framework designed for modern desktop and extended reality (XR) applications. This project is still in development and is part of my end-of-study project.',
-      tags: ['C++', 'Software Development', '3D'],
-      github: 'https://github.com/etib-corp/guillaume',
-      features: [
-        '3D Integration',
-        'Cross-Platform Support',
-        'Customizable Themes',
-        'Rich UI Components'
-      ]
-    },
-  ];
+  const projectIds = ['gameengine1', 'gameengine2', 'raytracer', 'guillaume'];
+  const projects = projectIds.map((id) => {
+    const item = t(`projects.items.${id}`, { returnObjects: true });
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return null;
+
+    const project = item as Record<string, unknown>;
+    return {
+      id,
+      title: typeof project.title === 'string' ? project.title : id,
+      description: typeof project.description === 'string' ? project.description : '',
+      tags: Array.isArray(project.tags) ? project.tags.filter((tag): tag is string => typeof tag === 'string') : [],
+      github: typeof project.github === 'string' ? project.github : undefined,
+      demo: typeof project.demo === 'string' ? project.demo : undefined,
+      features: Array.isArray(project.features) ? project.features.filter((feature): feature is string => typeof feature === 'string') : [],
+    } satisfies Project;
+  }).filter((project): project is Project => project !== null);
 
   const handleProjectClick = (id: string) => {
     setActiveProject(id === activeProject ? null : id);
   };
 
   return (
-    <section id="projects" className="py-20 bg-slate-100 dark:bg-slate-800/50">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl font-bold mb-12 flex items-center">
-          <span className="text-cyan-500 font-mono mr-2">03.</span> Projects
-        </h2>
+    <section id="projects" className="py-24 bg-[var(--paper-deep)]/60">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
+        <div className="section-rule pt-5 mb-12 flex items-end justify-between gap-5">
+          <div><p className="font-mono text-xs uppercase tracking-wider text-[var(--signal-dark)] mb-5">{t('projects.label')}</p><h2 className="display-title whitespace-pre-line text-4xl md:text-6xl font-bold">{t('projects.title')}</h2></div>
+          <span className="hidden sm:block font-mono text-xs text-[var(--muted)]">{t('projects.period')}</span>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--line)] border border-[var(--line)]">
           {projects.map((project) => (
             <div
               key={project.id}
-              className={`bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 ${
-                activeProject === project.id ? 'ring-2 ring-cyan-500' : ''
-              }`}
+              className={`bg-[var(--paper)] overflow-hidden transition-all duration-300 ${activeProject === project.id ? 'bg-[var(--ink)] text-[var(--paper)]' : ''}`}
             >
               <div
-                className="p-6 cursor-pointer h-full"
+                className="p-6 md:p-8 cursor-pointer h-full"
                 onClick={() => handleProjectClick(project.id)}
               >
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  <h3 className="text-xl font-semibold">{t(`projects.items.${project.id}.title`)}</h3>
                   <div className="flex space-x-3">
                     {project.github && (
                       <a
                         href={project.github}
-                        className="text-slate-600 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
+                        className="text-[var(--muted)] hover:text-[var(--signal)] transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -113,7 +73,7 @@ const Projects: React.FC = () => {
                     {project.demo && (
                       <a
                         href={project.demo}
-                        className="text-slate-600 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
+                        className="text-[var(--muted)] hover:text-[var(--signal)] transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -124,24 +84,22 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                <p className="mb-4 text-slate-600 dark:text-slate-300">
-                    <span dangerouslySetInnerHTML={{ __html: project.description }} />
-                </p>
+                <p className="mb-5 text-sm leading-relaxed text-[var(--muted)]">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-2">
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs font-mono px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-300"
+                      className="text-[10px] font-mono px-2 py-1 border border-[var(--line)] text-[var(--muted)]"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className={`overflow-hidden transition-all duration-300 ${activeProject === project.id ? 'max-h-96 mt-4' : 'max-h-0'}`}>
-                  <h4 className="font-bold text-sm uppercase text-slate-500 dark:text-slate-400 mb-2">Key Features</h4>
-                  <ul className="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 text-sm">
+                <div className={`overflow-hidden transition-all duration-300 ${activeProject === project.id ? 'max-h-96 mt-6' : 'max-h-0'}`}>
+                  <h4 className="font-mono text-[10px] uppercase text-[var(--muted)] mb-3">{t('projects.keyFeatures')}</h4>
+                  <ul className="list-disc list-inside space-y-2 text-[var(--muted)] text-sm">
                     {project.features.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}
@@ -152,15 +110,15 @@ const Projects: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-8 flex justify-between items-center gap-4">
+          <span className="font-mono text-xs text-[var(--muted)]">{t('projects.inspect')}</span>
           <a
             href="https://github.com/etib-corp"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 text-white font-medium rounded-md transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--signal-dark)] hover:text-[var(--signal)] transition-colors"
           >
-            <Github className="w-5 h-5 mr-2" />
-            View More on GitHub
+            <Github className="w-4 h-4" /> {t('projects.viewMore')} <ExternalLink className="w-3 h-3" />
           </a>
         </div>
       </div>

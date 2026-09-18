@@ -1,80 +1,37 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const About: React.FC = () => {
+  const { t } = useTranslation();
+  const interests = t('about.interests', { returnObjects: true }) as string[];
+
   return (
-    <section id="about" className="py-20 bg-slate-100 dark:bg-slate-800/50">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col md:flex-row gap-12 items-start">
-          <div className="md:w-1/2">
-            <h2 className="text-3xl font-bold mb-6 flex items-center">
-              <span className="text-cyan-500 font-mono mr-2">01.</span> About Me
-            </h2>
-            <div className="space-y-4 text-slate-700 dark:text-slate-300">
-              <p>
-                Hi! I'm Julien, a passionate software developer currently in my fourth year at Epitech,
-                 where I'm honing my skills in systems programming, software architecture, and full-stack web development.
-              </p>
-              <p>
-                My programming foundation started with C, which gave me strong expertise in memory management
-                 and algorithmic thinking. Since then, I've expanded to include C++, Python, and Rust, embracing
-                 modern paradigms while maintaining a deep appreciation for efficient, performant code.
-              </p>
-              <p>
-                I'm particularly fascinated by graphics programming—my early projects with OpenGL led me to
-                 develop a 3D game engine in C++ with my friends, and in my second year, we built a native
-                 Android VR application using OpenGL ES for Meta Quest.
-              </p>
-              <p>
-                More recently, I've been working on a Vulkan-based 3D software engine from scratch,
-                 developing open-source libraries for both the 3D rendering engine and GUI.
-              </p>
-              <p>
-                Beyond systems programming, I'm passionate about modern web development.
-                I build web applications using React, Next.js, Vite, and Tailwind CSS, creating
-                 efficient and user-friendly interfaces. I'm also experienced with development tools
-                  including Git, GitHub, CMake, and various build systems for collaborative, maintainable projects.
-              </p>
-                <p>
-                When I'm not coding, you might find me exploring roads on my motorcycle. I&nbsp;drive&nbsp;an&nbsp;MT09&nbsp;by&nbsp;the&nbsp;way✌️.
-                </p>
+    <section id="about" className="py-24 bg-[var(--paper-deep)]/60">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
+        <div className="section-rule pt-5 flex flex-col md:flex-row gap-14 items-start">
+          <div className="md:w-5/12">
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--signal-dark)] mb-5">{t('about.label')}</p>
+            <h2 className="display-title whitespace-pre-line text-4xl md:text-6xl font-bold mb-7">{t('about.title')}</h2>
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">{t('about.disciplines')}</p>
+          </div>
+          <div className="md:w-7/12 text-[var(--muted)] leading-relaxed">
+            <div className="space-y-5 text-sm md:text-base">
+              {[0, 1, 2, 3].map((index) => <p key={index}>{t(`about.paragraphs.${index}`)}</p>)}
             </div>
           </div>
-
-          <div className="md:w-1/2">
-            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-xl font-bold mb-4 text-cyan-500">Education</h3>
-              <div className="mb-8">
-                <div className="flex justify-between mb-1">
-                  <h4 className="font-bold">Inha University | 인하대학교 🇰🇷</h4>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">2025 - 2026</span>
-                </div>
-                <p className="text-sm mb-2">Exchange year in Computer Science</p>
-                <p className="text-slate-600 dark:text-slate-400 text-sm">
-                  During my exchange year at Inha University in South Korea, I strengthened my software development and
-                   algorithm skills through intensive, project-based, and theoretical courses, gaining practical
-                    experience in a dynamic academic environment.
-                </p>
-              </div>
-              <div className="mb-8">
-                <div className="flex justify-between mb-1">
-                  <h4 className="font-bold">Epitech Reunion</h4>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">2022 - 2027</span>
-                </div>
-                <p className="text-sm mb-2">Master's Degree in Software Engineering</p>
-                <p className="text-slate-600 dark:text-slate-400 text-sm">
-                  Master's-level Degree in Information Technology (Bac+5) accredited by the French Ministry of Higher Education and Research
-                  <br />
-                  Master's Degree in Software Engineering (Bac+5, RNCP Level 7) registered in the French National Directory of Professional Certifications (<a href="https://www.francecompetences.fr/recherche/rncp/37985/" className="text-cyan-500 hover:underline" target="_blank" rel="noopener noreferrer">RNCP37985</a>)
-                </p>
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-cyan-500">Interests</h3>
-              <ul className="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300">
-                <li>Low-level Programming</li>
-                <li>Graphical Programming</li>
-                <li>Fullstack Web Development</li>
-                <li>Performance Optimization</li>
-                <li>Open Source Contribution</li>
-              </ul>
+        </div>
+        <div className="mt-16 grid md:grid-cols-2 gap-px bg-[var(--line)] border border-[var(--line)]">
+          <div className="bg-[var(--paper)] p-6 md:p-8">
+            <div className="flex justify-between gap-5 mb-8"><h3 className="font-semibold">{t('about.education')}</h3><span className="font-mono text-xs text-[var(--muted)]">2022 — 2027</span></div>
+            <h4 className="text-lg font-semibold mb-1">Epitech Reunion</h4>
+            <p className="text-sm text-[var(--muted)]">{t('about.epitechDegree')}</p>
+            <div className="mt-6 pt-4 border-t border-[var(--line)] flex justify-between gap-5"><span className="text-sm">Inha University</span><span className="font-mono text-xs text-[var(--muted)]">2025 — 2026</span></div>
+            <p className="text-sm text-[var(--muted)] mt-1">{t('about.exchange')}</p>
+          </div>
+          <div className="bg-[var(--ink)] text-[var(--paper)] p-6 md:p-8">
+            <div className="flex justify-between gap-5 mb-8"><h3 className="font-semibold">{t('about.bring')}</h3><span className="font-mono text-xs text-[var(--paper)]/50">01—05</span></div>
+            <div className="flex flex-wrap gap-2">
+              {interests.map((interest) => <span key={interest} className="border border-[var(--paper)]/20 px-3 py-2 text-xs text-[var(--paper)]/80">{interest}</span>)}
             </div>
           </div>
         </div>

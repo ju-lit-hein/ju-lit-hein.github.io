@@ -1,117 +1,113 @@
-import { File, Github, Instagram, Linkedin } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, File, Github, Instagram, Linkedin, MapPin } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const Main: React.FC = () => {
+interface MainProps {
+  openResume: () => void;
+}
+
+const Main: React.FC<MainProps> = ({ openResume }) => {
+  const { t } = useTranslation();
   const terminalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!terminalRef.current) return;
 
-    const text = "I build complete software and web applications.";
+    const text = t('hero.tagline');
     let index = 0;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    terminalRef.current.innerHTML = '';
+
     const typeText = () => {
       if (terminalRef.current) {
         if (index < text.length) {
           terminalRef.current.innerHTML = text.slice(0, index + 1) + '<span class="cursor animate-ping">|</span>';
           index++;
-          setTimeout(typeText, 100);
+          timeoutId = setTimeout(typeText, 100);
         } else {
             terminalRef.current.innerHTML = text + '<span class="cursor animate-ping">|</span>';
         }
       }
     };
 
-    setTimeout(typeText, 1000);
-  }, []);
+    timeoutId = setTimeout(typeText, 1000);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [t]);
 
   const links = [
-        { name: 'GitHub', url: 'https://github.com/ju-lit-hein' },
-        { name: 'LinkedIn', url: 'https://www.linkedin.com/in/julienferdinand' },
-        { name: 'Instagram', url: 'https://www.instagram.com/julithein' },
-        { name: 'My resume', url: '/assets/resume.pdf' },
+        { name: t('hero.links.github'), url: 'https://github.com/ju-lit-hein', icon: Github },
+        { name: t('hero.links.linkedin'), url: 'https://www.linkedin.com/in/julienferdinand', icon: Linkedin },
+        { name: t('hero.links.instagram'), url: 'https://www.instagram.com/julithein', icon: Instagram },
+        { name: t('hero.links.resume'), url: '#resume', icon: File, action: openResume },
       ];
 
   return (
-    <div className="grid lg:grid-cols-2 grid-cols-1 pt-20">
-      <section id="main" className="min-h-screen pl-24 flex items-center">
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-          <div className="max-w-4xl">
-            <div className="text-cyan-500 mb-4 font-mono">Hi, my name is</div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">
-              Julien FERDINAND
-            </h1>
-            <div className="text-2xl sm:text-3xl md:text-4xl text-slate-700 dark:text-slate-300 font-medium mb-6">
-              <div ref={terminalRef} className="font-mono inline"></div>
+    <section id="main" className="min-h-screen flex items-center pt-24 pb-16">
+      <div className="max-w-6xl w-full mx-auto px-5 md:px-8">
+        <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-12 lg:gap-20 items-end">
+          <div className="max-w-3xl">
+            <div className="reveal-up reveal-delay-1 flex items-center gap-3 mb-8 font-mono text-xs uppercase tracking-[0.18em] text-[var(--signal-dark)]">
+              <span className="h-px w-10 bg-[var(--signal)]" /> {t('hero.availability')}
             </div>
-            <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-2xl">
-              I'm a fourth-year student at Epitech, specializing in software development.
-              I have experience working with C++, Python, Rust, and C for building system-level and application software.
-              I also develop modern web applications using frameworks and tools like React, Next.js, Vite, and Tailwind CSS, focusing on creating efficient and user-friendly interfaces.
+            <h1 className="reveal-up reveal-delay-1 display-title text-5xl sm:text-6xl md:text-8xl font-bold mb-8">
+              Julien<br /><span className="text-[var(--signal)]">Ferdinand.</span>
+            </h1>
+            <div className="reveal-up reveal-delay-2 mb-7 text-xl sm:text-2xl md:text-3xl font-medium text-[var(--muted)]">
+              <span ref={terminalRef} className="font-mono" />
+            </div>
+            <p className="reveal-up reveal-delay-2 max-w-2xl text-base md:text-lg leading-relaxed text-[var(--muted)] mb-9">
+              {t('hero.description')}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#projects"
-                className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-md transition-colors duration-300"
-              >
-                View My Work
+            <div className="reveal-up reveal-delay-3 flex flex-wrap items-center gap-5">
+              <a href="#projects" className="inline-flex items-center gap-3 bg-[var(--ink)] text-[var(--paper)] px-5 py-3 text-sm font-semibold hover:bg-[var(--signal)] transition-colors">
+                {t('actions.selectedWork')} <ArrowDownRight className="w-4 h-4" />
               </a>
-              <a
-                href="#contact"
-                className="px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500 font-medium rounded-md transition-colors duration-300"
-              >
-                Contact Me
+              <a href="#contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--signal-dark)] hover:text-[var(--signal)] transition-colors">
+                {t('actions.conversation')} <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           </div>
+
+          <aside className="reveal-up reveal-delay-3 lg:pb-2">
+            <div className="border-t-2 border-[var(--ink)] pt-5 mb-7">
+              <div className="flex justify-between font-mono text-[11px] uppercase tracking-wider text-[var(--muted)] mb-7">
+                <span>{t('hero.currentChapter')}</span><span>{t('hero.chapterDate')}</span>
+              </div>
+              <h2 className="text-2xl font-semibold leading-tight mb-3">{t('hero.chapterTitle')}</h2>
+              <p className="text-sm leading-relaxed text-[var(--muted)]">{t('hero.chapterDescription')}</p>
+            </div>
+            <div className="flex items-center gap-2 font-mono text-xs text-[var(--muted)] mb-8"><MapPin className="w-4 h-4 text-[var(--signal)]" /> {t('hero.location')}</div>
+            <div className="grid grid-cols-2 gap-px bg-[var(--line)] border border-[var(--line)]">
+              <div className="bg-[var(--paper)] p-4"><span className="block text-2xl font-semibold">04+</span><span className="font-mono text-[10px] uppercase text-[var(--muted)]">{t('hero.yearsCoding')}</span></div>
+              <div className="bg-[var(--paper)] p-4"><span className="block text-2xl font-semibold">C++</span><span className="font-mono text-[10px] uppercase text-[var(--muted)]">{t('hero.coreLanguage')}</span></div>
+            </div>
+          </aside>
         </div>
-      </section>
-      <div className="min-h-screen pt-20 flex flex-col items-center justify-start">
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 w-full max-w-md">
-          <h2 className="text-3xl font-bold mb-8">Find me on</h2>
-          <div className="space-y-4">
+
+        <div className="mt-20 pt-6 border-t border-[var(--line)] flex flex-wrap items-center justify-between gap-4">
+          <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">{t('hero.findMe')}</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
             {links.map((link) => (
               <a
                 key={link.name}
                 href={link.url}
-                target="_blank"
+                onClick={link.action ? (event) => { event.preventDefault(); link.action?.(); } : undefined}
+                target={link.url.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                aria-label={`Open ${link.name} in a new tab`}
-                className="group flex items-center justify-between w-full px-5 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                aria-label={t('actions.openNewTab', { name: link.name })}
+                className="group inline-flex items-center gap-2 font-mono text-xs text-[var(--muted)] hover:text-[var(--signal)] transition-colors focus:outline-none focus:text-[var(--signal)]"
               >
-                <div className="flex items-center space-x-4">
-                  <span className="w-10 h-10 flex items-center justify-center rounded-md bg-cyan-50 dark:bg-cyan-900 text-cyan-600 dark:text-cyan-300">
-                    {link.name === 'GitHub' ? (
-                      <Github className="w-5 h-5 text-cyan-500" aria-hidden="true" />
-                    ) : link.name === 'LinkedIn' ? (
-                      <Linkedin className="w-5 h-5 text-cyan-500" aria-hidden="true" />
-                    ): link.name === 'Instagram' ? (
-                      <Instagram className="w-5 h-5 text-cyan-500" aria-hidden="true" />
-                    ) : link.name === 'My resume' ? (
-                      <File className="w-5 h-5 text-cyan-500" aria-hidden="true" />
-                    ) : null}
-                  </span>
-
-                  <div>
-                    <div className="text-lg font-medium text-slate-900 dark:text-slate-100">{link.name}</div>
-                    <div className="text-sm text-slate-500 dark:text-slate-400 truncate">
-                      {link.url.substring(0, 30)}
-                      {link.url.length > 30 ? '...' : ''}
-                      </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center ml-4 text-sm text-cyan-600 dark:text-cyan-300">
-                  <span className="hidden sm:inline">Open</span>
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
+                  <span className="text-[var(--signal)]"><link.icon className="w-4 h-4" aria-hidden="true" /></span>
+                <span>{link.name}</span><ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100" />
               </a>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

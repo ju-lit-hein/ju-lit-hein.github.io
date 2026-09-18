@@ -1,133 +1,106 @@
-import React, { useState } from 'react';
-import { Terminal, Cpu, Code, Server, AppWindow } from 'lucide-react';
-import { C, CPlusPlus, GitHubDark, GitHubLight, NextJs, Python, RustDark, RustLight, TailwindCSS, VisualStudioCode, ViteJS } from 'developer-icons';
-import { ThemeContext } from '../context/ThemeContext';
-import { React as ReactLogo } from 'developer-icons';
+import React from 'react';
+import { AppWindow, Braces, Check, Cpu, GitBranch, Terminal } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-interface SkillCategory {
-  id: string;
-  name: string;
+interface Capability {
+  number: string;
+  key: 'systems' | 'graphics' | 'web' | 'practice';
   icon: React.ReactNode;
-  skills: {
-    name: string;
-    logo?: React.ReactNode;
-  }[];
 }
 
+const capabilities: Capability[] = [
+  {
+    number: '01',
+    key: 'systems',
+    icon: <Braces className="h-5 w-5" />,
+  },
+  {
+    number: '02',
+    key: 'graphics',
+    icon: <Cpu className="h-5 w-5" />,
+  },
+  {
+    number: '03',
+    key: 'web',
+    icon: <AppWindow className="h-5 w-5" />,
+  },
+  {
+    number: '04',
+    key: 'practice',
+    icon: <GitBranch className="h-5 w-5" />,
+  },
+];
+
 const Skills: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('software');
-
-  const theme = React.useContext(ThemeContext)!;
-  const isDarkMode = theme.theme === 'dark';
-
-  const skillCategories: SkillCategory[] = [
-    {
-      id: 'software',
-      name: 'Software Development',
-      icon: <Code className="w-5 h-5 md:w-6 md:h-6" />,
-      skills: [
-        { name: 'C', logo: <C className="w-14 h-14" /> },
-        { name: 'C++', logo: <CPlusPlus className="w-14 h-14" /> },
-        { name: 'Rust', logo: <>{isDarkMode ? <RustLight className="w-14 h-14" /> : <RustDark className="w-14 h-14" />}</>},
-        { name: 'Python', logo: <Python className="w-14 h-14" /> },
-      ],
-    },
-    {
-      id: 'web',
-      name: 'Web Development',
-      icon: <AppWindow className="w-5 h-5 md:w-6 md:h-6" />,
-      skills: [
-        { name: 'React', logo: <ReactLogo className="w-14 h-14" /> },
-        { name: 'Next', logo: <NextJs className="w-14 h-14" /> },
-        { name: 'Vite', logo: <ViteJS className="w-14 h-14" /> },
-        { name: 'Tailwind', logo: <TailwindCSS className="w-14 h-14" /> },
-      ],
-    },
-    {
-      id: 'graphical',
-      name: 'Graphical Programming',
-      icon: <Cpu className="w-5 h-5 md:w-6 md:h-6" />,
-      skills: [
-        { name: 'OpenGL', logo: <p>OpenGL</p> },
-        { name: 'Vulkan', logo: <p>Vulkan</p> },
-        { name: 'SDL', logo: <p>SDL</p> },
-        { name: 'OpenGL ES', logo: <p>OpenGL ES</p> },
-        { name: 'OpenXR', logo: <p>OpenXR</p> },
-      ],
-    },
-    {
-      id: 'tools',
-      name: 'Dev Tools',
-      icon: <Terminal className="w-5 h-5 md:w-6 md:h-6" />,
-      skills: [
-        { name: 'Git & GitHub', logo: <>{isDarkMode ? <GitHubLight className="w-14 h-14" /> : <GitHubDark className="w-14 h-14" />}</> },
-        { name: 'Debugging Tools', logo: <p>Debugging Tools</p> },
-        { name: 'VS Code', logo: <VisualStudioCode className="w-14 h-14" /> },
-        { name: 'Make/CMake', logo: <p>Make/CMake</p> },
-      ],
-    },
-    {
-      id: 'other',
-      name: 'Other',
-      icon: <Server className="w-5 h-5 md:w-6 md:h-6" />,
-      skills: [
-        { name: 'Algorithms', logo: <p>Algorithms</p> },
-        { name: 'Data Structures', logo: <p>Data Structures</p> },
-        { name: 'Software Architecture', logo: <p>Software Architecture</p> },
-        { name: 'Unit Testing', logo: <p>Unit Testing</p> },
-        { name: 'Documentation', logo: <p>Documentation</p> },
-      ],
-    },
-  ];
-
-  const activeSkills = skillCategories.find(cat => cat.id === activeCategory)?.skills || [];
-
+  const { t } = useTranslation();
+  const getTools = (key: Capability['key']) => t(`capabilities.rows.${key}.tools`, { returnObjects: true }) as string[];
   return (
-    <section id="skills" className="py-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl font-bold mb-12 flex items-center">
-          <span className="text-cyan-500 font-mono mr-2">02.</span> Skills & Expertise
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-1">
-            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-4 border border-slate-200 dark:border-slate-700">
-              <nav className="space-y-2">
-                {skillCategories.map((category) => (
-                  <button
-                    key={category.id}
-                    className={`w-full flex items-center p-3 rounded-md transition-colors text-left ${
-                      activeCategory === category.id
-                        ? 'bg-cyan-500/10 text-cyan-500'
-                        : 'hover:bg-slate-100 dark:hover:bg-slate-700/50'
-                    }`}
-                    onClick={() => setActiveCategory(category.id)}
-                  >
-                    <span className="mr-3">{category.icon}</span>
-                    <span className="font-medium">{category.name}</span>
-                  </button>
-                ))}
-              </nav>
-            </div>
+    <section id="skills" className="py-24">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
+        <div className="section-rule pt-5 mb-14 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--signal-dark)] mb-5">{t('capabilities.label')}</p>
+            <h2 className="display-title whitespace-pre-line text-4xl md:text-6xl font-bold">{t('capabilities.title')}</h2>
           </div>
+          <p className="max-w-md text-sm md:text-base leading-relaxed text-[var(--muted)]">
+            {t('capabilities.intro')}
+          </p>
+        </div>
 
-          <div className="md:col-span-2">
-            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-xl font-bold mb-6">
-                {skillCategories.find(cat => cat.id === activeCategory)?.name}
-              </h3>
-
-              <div className="space-y-6">
-                {activeSkills.map((skill, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-1">
-                      {skill.logo}
-                    </div>
+        <div className="grid lg:grid-cols-[1.45fr_0.55fr] gap-10 lg:gap-16 items-start">
+          <div className="border-t-2 border-[var(--ink)]">
+            {capabilities.map((capability) => (
+              <article key={capability.number} className="group grid grid-cols-[2.5rem_1fr] md:grid-cols-[3.5rem_1fr_auto] gap-4 md:gap-7 py-7 border-b border-[var(--line)] hover:bg-[var(--paper-deep)]/50 transition-colors">
+                <span className="font-mono text-xs text-[var(--signal-dark)] pt-1">{capability.number}</span>
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-[var(--signal)]">{capability.icon}</span>
+                    <h3 className="text-lg md:text-xl font-semibold">{t(`capabilities.rows.${capability.key}.title`)}</h3>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <p className="max-w-xl text-sm leading-relaxed text-[var(--muted)]">{t(`capabilities.rows.${capability.key}.description`)}</p>
+                  <div className="flex flex-wrap gap-2 mt-4 md:hidden">
+                    {getTools(capability.key).map((tool) => <span key={tool} className="font-mono text-[10px] border border-[var(--line)] px-2 py-1 text-[var(--muted)]">{tool}</span>)}
+                  </div>
+                </div>
+                <div className="hidden md:flex flex-wrap justify-end gap-2 max-w-[14rem] pt-1">
+                  {getTools(capability.key).map((tool) => <span key={tool} className="font-mono text-[10px] border border-[var(--line)] px-2 py-1 h-fit text-[var(--muted)] group-hover:border-[var(--signal)] transition-colors">{tool}</span>)}
+                </div>
+              </article>
+            ))}
           </div>
+
+          <aside className="bg-[var(--ink)] text-[var(--paper)] p-6 md:p-8 lg:sticky lg:top-28">
+            <div className="flex items-center justify-between mb-10">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--paper)]/55">{t('capabilities.workingPrinciples')}</span>
+              <Terminal className="w-4 h-4 text-[var(--signal)]" />
+            </div>
+            <ul className="space-y-5">
+              {(t('capabilities.principles', { returnObjects: true }) as string[]).map((principle) => (
+                <li key={principle} className="flex gap-3 text-sm leading-relaxed text-[var(--paper)]/80">
+                  <Check className="w-4 h-4 shrink-0 text-[var(--signal)] mt-0.5" />
+                  {principle}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 pt-5 border-t border-[var(--paper)]/15 flex items-end justify-between">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--paper)]/45">{t('capabilities.approach')}</span>
+              <span className="text-2xl font-semibold text-[var(--signal)]">01—04</span>
+            </div>
+          </aside>
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-[var(--line)] border border-[var(--line)]">
+          {[
+            ['04+', t('capabilities.metrics.years')],
+            ['05', t('capabilities.metrics.disciplines')],
+            ['∞', t('capabilities.metrics.curiosity')],
+            ['1', t('capabilities.metrics.detail')],
+          ].map(([value, label]) => (
+            <div key={label} className="bg-[var(--paper)] p-4 md:p-5">
+              <strong className="block text-2xl md:text-3xl font-semibold">{value}</strong>
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">{label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

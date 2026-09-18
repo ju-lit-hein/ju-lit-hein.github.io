@@ -7,9 +7,11 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Terminal from './components/Terminal';
+import ResumeChooser from './components/ResumeChooser';
 
 function Home() {
   const [showTerminal, setShowTerminal] = useState(false);
+  const [showResume, setShowResume] = useState(false);
 
   const toggleTerminal = () => {
     setShowTerminal(!showTerminal);
@@ -27,15 +29,16 @@ function Home() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div className="site-shell min-h-screen bg-[var(--paper)] text-[var(--ink)] transition-colors duration-300">
       <Header toggleTerminal={toggleTerminal} />
       <main>
-        <Main />
+        <Main openResume={() => setShowResume(true)} />
         <About />
         <Skills />
         <Projects />
-        <Contact />
+        <Contact openResume={() => setShowResume(true)} />
         {showTerminal && <Terminal onClose={toggleTerminal} />}
+        {showResume && <ResumeChooser onClose={() => setShowResume(false)} />}
       </main>
       <Footer />
     </div>
